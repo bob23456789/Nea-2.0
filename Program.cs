@@ -1,7 +1,11 @@
 ﻿
+using Microsoft.Xna.Framework.Graphics;
+using Nea_2._0;
+using System.Numerics;
+
 using var game = new Nea_2._0.Game1();
 game.Run();
-class tank
+class tank : Gameobject
 {
     private int _x; // cords
     public int X { get { return _x; } }
@@ -39,7 +43,10 @@ class tank
         _movementactionpoints = movepoints;
         _havefired = havefired;
     }
-
+    public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager Content)
+    {
+        Texture = Content.Load<Texture2D>(@"SpriteMapHero");
+    }
 }
 
 

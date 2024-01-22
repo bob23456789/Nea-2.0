@@ -22,10 +22,10 @@ namespace Nea_2._0
         public int[,] tilemap =
         {
               {0, 0, 0, 0, 0,0, 0, 0, 0, 0,0,0,0,0,0},
-              {0, 0, 0, 0, 0,0, 0, 0, 0, 0,0,0,0,0,0},
-              {0, 0, 0, 0, 0,0, 0, 0, 0, 0,0,0,0,0,0},
-              {0, 0, 0, 0, 0,0, 0, 0, 0, 0,0,0,0,0,0},
-              {0, 0, 0, 0, 0,0, 0, 0, 0, 0,0,0,0,0,0},
+              {0, 0, 0, 1, 1,0, 0, 0, 0, 0,0,0,0,0,0},
+              {0, 0, 0, 0, 1,1, 0, 0, 0, 0,0,0,0,0,0},
+              {0, 0, 0, 1, 1,1, 1, 0, 0, 0,0,0,0,0,0},
+              {0, 0, 0, 0, 0,0, 1, 0, 0, 0,0,0,0,0,0},
               {0, 0, 0, 0, 0,0, 0, 0, 0, 0,0,0,0,0,0},
               {0, 0, 0, 0, 0,0, 0, 0, 0, 0,0,0,0,0,0},
               {0, 0, 0, 0, 0,0, 0, 0, 0, 0,0,0,0,0,0},
@@ -41,19 +41,6 @@ namespace Nea_2._0
 
         protected override void Initialize()
         {
-           //int[,] tilemap = 
-           //{
-           //    {0, 0, 0, 0, 0,0, 0, 0, 0, 0},
-           //    {0, 0, 0, 0, 0,0, 0, 0, 0, 0},
-           //    {0, 0, 0, 0, 0,0, 0, 0, 0, 0},
-           //    {0, 0, 0, 0, 0,0, 0, 0, 0, 0},
-           //    {0, 0, 0, 0, 0,0, 0, 0, 0, 0},
-           //    {0, 0, 0, 0, 0,0, 0, 0, 0, 0},
-           //    {0, 0, 0, 0, 0,0, 0, 0, 0, 0}
-           //};
-                
-
-            
             base.Initialize();
         }
 
@@ -88,7 +75,7 @@ namespace Nea_2._0
                 gamestate = 1.5;
                 LoadContent();
             }
-            
+
 
             base.Update(gameTime);
         }
@@ -115,11 +102,20 @@ namespace Nea_2._0
                 _spriteBatch.Begin();// begins draws  in the srpites 
                 for (int y = 0; y < tilemap.GetLength(0); y++)
                 {
-                    
+
                     row = 0;
                     for (int x = 0; x < tilemap.GetLength(1); x++)
                     {
-                        _spriteBatch.Draw(grassTexture, new Vector2(row, col), Color.White);
+                        if (tilemap[y,x] == 0 )
+                        {
+                            _spriteBatch.Draw(grassTexture, new Vector2(row, col), Color.White);
+                        }
+                        if (tilemap[y,x] == 1)
+                        {
+                            _spriteBatch.Draw(treesquaretexture, new Vector2(row, col), Color.White);
+                        }
+                        
+                       
                         row += 55;
                     }
                     col += 55;
@@ -130,5 +126,6 @@ namespace Nea_2._0
                 base.Draw(gameTime);
             }
         }
+        
     }
 }
