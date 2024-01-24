@@ -7,10 +7,17 @@ using var game = new Nea_2._0.Game1();
 game.Run();
 class tank : Gameobject
 {
-    private int _x; // cords
-    public int X { get { return _x; } }
-    private int _y;// y postion 
-    public int Y { get { return _y; } }
+    public enum Direction
+    {
+        down,
+        left,
+        right,
+        up,
+    }
+    private bool _player; // true = p1 false = p2
+    public bool Player { get { return _player; } }
+    private int _type; // 1 = light 2 = medium 3 = heavy 0 = dead
+    public int Type { get { return _type; } }
     private int _armour;// armour value of tank  
     public int Armour { get { return _armour; } }
     private int _acc;// accuracy of tank 
@@ -29,11 +36,11 @@ class tank : Gameobject
     public bool Havefired { get { return _havefired; } }
     public bool[] Components = new bool[5];  // components 1= engine  2= tracks 3=gun 4=turret ring if all destroyed tank is destroyed  tracks can be repaired 
     public bool[] Crewmembers = new bool[5]; // crew 1= driver 2= gunner 3= loader 4= commander commander can switch wiht any loader can switch with gunner
-    public tank(int x, int y, int armour, int acc, int speed, int penpower, bool apshell, int range, int movepoints, bool havefired)
+    public tank(int armour, int acc, int speed, int penpower, bool apshell, int range, int movepoints, bool havefired, int type, bool player)
     {
-
-        _x = x;
-        _y = y;
+        _player = player;
+        _type = type;
+        Location = new Vector2(0, 0);
         _armour = armour;
         _acc = acc;
         _speed = speed;
@@ -45,8 +52,14 @@ class tank : Gameobject
     }
     public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager Content)
     {
-        Texture = Content.Load<Texture2D>(@"SpriteMapHero");
+        if (Type == 1 && Player == true)
+        {
+            Texture = Content.Load<Texture2D>(@"Light_blueRF");
+        }
+    }
+    public override void Draw(SpriteBatch spriteBatch)
+    {
+       
     }
 }
-
 

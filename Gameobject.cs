@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Nea_2._0
 {
-    internal class Gameobject
+    internal class Gameobject: Game1
     {
         public Vector2 Location; //public anyone can see it!
         protected Texture2D Texture;
