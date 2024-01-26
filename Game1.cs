@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Configuration;
+using static Nea_2._0.Game1;
 namespace Nea_2._0
 {
     public class Game1 : Game
@@ -15,9 +17,12 @@ namespace Nea_2._0
         Texture2D menuTexture;
         private Texture2D buttonTexture;
         private Rectangle buttonRectangle; // square which teh tecture will be put in 
-        double gamestate = 1.5;
+        double gamestate = 1;
         string menuTitle = "War On Perliculum\n             Prime";
         string Line = "";
+        Camera camera;
+        float initialZoom = 0.7f;//sets inital zoom
+        Vector2 initialPosition = new Vector2(-55, 0); // sets inital potion of camera
         private SpriteFont myfontyfont;
         public int[,] tilemap =
         {
@@ -29,7 +34,9 @@ namespace Nea_2._0
               {0, 0, 0, 0, 0,0, 0, 0, 0, 0,0,0,0,0,0},
               {0, 0, 0, 0, 0,0, 0, 0, 0, 0,0,0,0,0,0},
               {0, 0, 0, 0, 0,0, 0, 0, 0, 0,0,0,0,0,0},
-              {0, 0, 0, 0, 0,0, 0, 0, 0, 0,0,0,0,0,0}
+              {0, 0, 0, 0, 0,0, 0, 0, 0, 0,0,0,0,0,0},
+              {0, 0, 0, 0, 0,0, 0, 0, 0, 0,0,0,0,0,0},
+              {0, 0, 0, 0, 0,0, 0, 0, 0, 0,0,0,0,0,0},
          };
 
         public Game1()
@@ -37,10 +44,15 @@ namespace Nea_2._0
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            _graphics.IsFullScreen = true;
+            _graphics.ApplyChanges();
         }
 
         protected override void Initialize()
         {
+            camera = new Camera(GraphicsDevice.Viewport, initialZoom, initialPosition);
+
+
             base.Initialize();
         }
 
@@ -96,10 +108,10 @@ namespace Nea_2._0
                 _spriteBatch.Draw(buttonTexture, buttonRectangle, Color.White);
                 _spriteBatch.End();
             }
-
+            
             if (gamestate == 1.5)
             {
-                _spriteBatch.Begin();// begins draws  in the srpites 
+                _spriteBatch.Begin(transformMatrix: camera.GetViewMatrix());// begins draws  in the srpites + sets the zoom
                 for (int y = 0; y < tilemap.GetLength(0); y++)
                 {
 
@@ -126,6 +138,28 @@ namespace Nea_2._0
                 base.Draw(gameTime);
             }
         }
-        
+        public class Camera
+        {
+            public Matrix Transform { get; private set; }
+            private Viewport viewport;
+            private float initialZoom;
+            private Vector2 initialPosition;
+
+            public Camera(Viewport viewport, float initialZoom, Vector2 initialPosition)
+            {
+                this.viewport = viewport;
+                this.initialZoom = initialZoom;
+                this.initialPosition = initialPosition;
+                // Initialize the camera transformation with the initial zoom
+                Transform = Matrix.CreateScale(initialZoom) * Matrix.CreateTranslation(new Vector3(-initialPosition, 0));
+            }
+
+            public Matrix GetViewMatrix()
+            {
+                return Transform;
+            }
+        }
+
+
     }
 }
