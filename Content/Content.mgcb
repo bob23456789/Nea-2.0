@@ -224,6 +224,18 @@
 /processorParam:TextureFormat=Color
 /build:light red UF.png
 
+#begin maintain.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:maintain.png
+
 #begin menuscreen.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
