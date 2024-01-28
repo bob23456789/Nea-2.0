@@ -10,24 +10,38 @@ namespace Nea_2._0
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        const int tilesize = 55;
+        const int tilesize = 55; // so i rember teh tile size
+        //textures for terrain and ui 
         Texture2D squareTexture;
         Texture2D grassTexture;
         Texture2D treesquaretexture;
         Texture2D mountaintexutre;
         Texture2D menuTexture;
         private Texture2D buttonTexture;
+        private SpriteFont myfontyfont;
         private Rectangle buttonRectangle; // square which teh tecture will be put in 
-        double gamestate = 1.5;
+        double gamestate = 1.5;//shows if playign or meue 
         string menuTitle = "War On Perliculum\n             Prime";
         string Line = "";
+        // objects
         Camera camera;
-        tank Tank;
+        //tank objects
+        tank Bheavy;
+        tank Bmed;
+        tank Bmed2;
+        tank Blight;
+        tank Blight2;
+        tank Rheavy;
+        tank Rmed;
+        tank Rmed2;
+        tank Rlight;
+        tank Rlight2;
+        //lists
         List<tank> p1tanks = new List<tank>();
         List<tank> p2tanks = new List<tank>();
+        //misc
         float initialZoom = 0.7f;//sets inital zoom
         Vector2 initialPosition = new Vector2(-55, 0); // sets inital potion of camera
-        private SpriteFont myfontyfont;
        
         public int[,] tilemap =
         {
@@ -165,8 +179,17 @@ namespace Nea_2._0
                     col += 55;
                 }
                 _spriteBatch.End();
-                
-                 
+                // drawing the tanks probaly an esasier way 
+                Bheavy.Draw(_spriteBatch);
+                Rheavy.Draw(_spriteBatch);
+                Bmed.Draw(_spriteBatch);
+                Rmed.Draw(_spriteBatch);
+                Bmed2.Draw(_spriteBatch);
+                Rmed2.Draw(_spriteBatch);
+                Blight.Draw(_spriteBatch);
+                Rlight.Draw(_spriteBatch);
+                Blight2.Draw(_spriteBatch);
+                Rlight2.Draw(_spriteBatch);
                 base.Draw(gameTime);
             }
         }
