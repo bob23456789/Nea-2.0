@@ -112,28 +112,33 @@ namespace Nea_2._0
             int _Y = 0;
             if (Player == true)
             {
-                if (Type == 2 && TankID == 3)
+                if (Type == 3 && TankID == 1)
                 {
+                    LoadContent();
                     _Y = 275;
                     spriteBatch.Draw(Texture, new Vector2(_X, _Y), Microsoft.Xna.Framework.Color.White);
                 }
                 else if (Type == 2 && TankID == 2)
                 {
+                    LoadContent();
                     _Y = 220;
                     spriteBatch.Draw(Texture, new Vector2(_X, _Y), Microsoft.Xna.Framework.Color.White);
                 }
                 else if (Type == 2 && TankID == 3)
                 {
+                    LoadContent();
                     _Y = 330;
                     spriteBatch.Draw(Texture, new Vector2(_X, _Y), Microsoft.Xna.Framework.Color.White);
                 }
                 else if (Type == 1 && TankID == 4)
                 {
+                    LoadContent();
                     _Y = 170;
                     spriteBatch.Draw(Texture, new Vector2(_X, _Y), Microsoft.Xna.Framework.Color.White);
                 }
                 else if (Type == 1 && TankID == 5)
                 {
+                    LoadContent();
                     _Y = 280;
                     spriteBatch.Draw(Texture, new Vector2(_X, _Y), Microsoft.Xna.Framework.Color.White);
                 }
@@ -141,28 +146,33 @@ namespace Nea_2._0
             if(Player == false)
             {
                 _X = 825;
-                if (Type == 2 && TankID == 3)
+                if (Type == 2 && TankID == 1)
                 {
+                    LoadContent();
                     _Y = 275;
                     spriteBatch.Draw(Texture, new Vector2(_X, _Y), Microsoft.Xna.Framework.Color.White);
                 }
                 else if (Type == 2 && TankID == 2)
                 {
+                    LoadContent();
                     _Y = 220;
                     spriteBatch.Draw(Texture, new Vector2(_X, _Y), Microsoft.Xna.Framework.Color.White);
                 }
                 else if (Type == 2 && TankID == 3)
                 {
+                    LoadContent();
                     _Y = 330;
                     spriteBatch.Draw(Texture, new Vector2(_X, _Y), Microsoft.Xna.Framework.Color.White);
                 }
                 else if (Type == 1 && TankID == 4)
                 {
+                    LoadContent();
                     _Y = 170;
                     spriteBatch.Draw(Texture, new Vector2(_X, _Y), Microsoft.Xna.Framework.Color.White);
                 }
                 else if (Type == 1 && TankID == 5)
                 {
+                    LoadContent();
                     _Y = 280;
                     spriteBatch.Draw(Texture, new Vector2(_X, _Y), Microsoft.Xna.Framework.Color.White);
                 }

@@ -8,7 +8,8 @@ namespace Nea_2._0
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
+        private GraphicsDeviceManager _grpahics;
+
         private SpriteBatch _spriteBatch;
         const int tilesize = 55; // so i rember teh tile size
         //textures for terrain and ui 
@@ -20,7 +21,7 @@ namespace Nea_2._0
         private Texture2D buttonTexture;
         private SpriteFont myfontyfont;
         private Rectangle buttonRectangle; // square which teh tecture will be put in 
-        double gamestate = 1.5;//shows if playign or meue 
+        double gamestate = 1;//shows if playign or meue 
         string menuTitle = "War On Perliculum\n             Prime";
         string Line = "";
         // objects
@@ -60,38 +61,42 @@ namespace Nea_2._0
 
         public Game1()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            _grpahics= new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            _graphics.IsFullScreen = true;
-            _graphics.ApplyChanges();
+            //_graphics.IsFullScreen = true;
+            //_graphics.ApplyChanges();
         }
+    
         protected override void Initialize()
         {
-            //blue tanks
-            tank Bheavy = new tank(0, 275, tank.Direction.right, 75, 80, 1, 75, 5, 2, false, 3, true, 1,false);// x,y,direction,armour,acc,speed,penpower,range,movepoints,havefired,type,player,id 
-            p1tanks.Add(Bheavy);
-            tank Bmed = new tank(0, 220, tank.Direction.right, 50, 70, 2, 50, 5, 3, false, 2, true, 2,false);
-            p1tanks.Add(Bmed);
-            tank Bmed2 = new tank(0, 330, tank.Direction.right, 50, 70, 2, 50, 5, 3, false, 2, true, 3, false);
-            p1tanks.Add(Bmed2);
-            tank Blight = new tank(0,170 , tank.Direction.right, 25, 60, 3, 25, 3, 5, false, 2, true, 4, false);
-            p1tanks.Add(Blight);
-            tank Blight2 = new tank(0,280 , tank.Direction.right, 25, 60, 3, 25, 3, 5, false, 1, true, 5, false);
-            p1tanks.Add(Blight2);
-            //red tanks
-            tank Rheavy = new tank(825, 275, tank.Direction.right, 75, 80, 1, 75, 5, 2, false, 3, false, 1, false);// x,y,direction,armour,acc,speed,penpower,range,movepoints,havefired,type,player,id 
-            p2tanks.Add(Rheavy);
-            tank Rmed = new tank(825, 220, tank.Direction.right, 50, 70, 2, 50, 5, 3, false, 2, false, 2, false);
-            p2tanks.Add(Rmed);
-            tank Rmed2 = new tank(825, 230, tank.Direction.right, 50, 70, 2, 50, 5, 3, false, 2, false, 3, false);
-            p2tanks.Add(Rmed2);
-            tank Rlight = new tank(825, 170, tank.Direction.right, 25, 60, 3, 25, 3, 5, false, 2, false, 4, false);
-            p2tanks.Add(Rlight);
-            tank Rlight2 = new tank(825, 280, tank.Direction.right, 25, 60, 3, 25, 3, 5, false, 1, false, 5, false);
-            p2tanks.Add(Rlight2);
             camera = new Camera(GraphicsDevice.Viewport, initialZoom, initialPosition);
-            
+            if (gamestate ==1)
+            {
+                //blue tanks
+                Bheavy = new tank(0, 275, tank.Direction.right, 75, 80, 1, 75, 5, 2, false, 3, true, 1, false);// x,y,direction,armour,acc,speed,penpower,range,movepoints,havefired,type,player,id 
+                p1tanks.Add(Bheavy);
+                Bmed = new tank(0, 220, tank.Direction.right, 50, 70, 2, 50, 5, 3, false, 2, true, 2, false);
+                p1tanks.Add(Bmed);
+                Bmed2 = new tank(0, 330, tank.Direction.right, 50, 70, 2, 50, 5, 3, false, 2, true, 3, false);
+                p1tanks.Add(Bmed2);
+                Blight = new tank(0, 170, tank.Direction.right, 25, 60, 3, 25, 3, 5, false, 2, true, 4, false);
+                p1tanks.Add(Blight);
+                Blight2 = new tank(0, 280, tank.Direction.right, 25, 60, 3, 25, 3, 5, false, 1, true, 5, false);
+                p1tanks.Add(Blight2);
+                //red tanks
+                Rheavy = new tank(825, 275, tank.Direction.right, 75, 80, 1, 75, 5, 2, false, 3, false, 1, false);// x,y,direction,armour,acc,speed,penpower,range,movepoints,havefired,type,player,id 
+                p2tanks.Add(Rheavy);
+                Rmed = new tank(825, 220, tank.Direction.right, 50, 70, 2, 50, 5, 3, false, 2, false, 2, false);
+                p2tanks.Add(Rmed);
+                Rmed2 = new tank(825, 230, tank.Direction.right, 50, 70, 2, 50, 5, 3, false, 2, false, 3, false);
+                p2tanks.Add(Rmed2);
+                Rlight = new tank(825, 170, tank.Direction.right, 25, 60, 3, 25, 3, 5, false, 2, false, 4, false);
+                p2tanks.Add(Rlight);
+                Rlight2 = new tank(825, 280, tank.Direction.right, 25, 60, 3, 25, 3, 5, false, 1, false, 5, false);
+                p2tanks.Add(Rlight2);
+                camera = new Camera(GraphicsDevice.Viewport, initialZoom, initialPosition);
+            }
 
             base.Initialize();
         }
@@ -99,13 +104,25 @@ namespace Nea_2._0
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            if (gamestate == 1.5)
+            if (gamestate == 1)
             {
                 grassTexture = Content.Load<Texture2D>("grass");//loads grass 
                 treesquaretexture = Content.Load<Texture2D>("tree");// loads tree tile
                 mountaintexutre = Content.Load<Texture2D>("maintain");
+                //tank laoding area
+                //Bheavy.LoadContent();
+                //Rheavy.LoadContent();
+                //Bmed.LoadContent();
+                //Rmed.LoadContent();
+                //Bmed2.LoadContent();
+                //Rmed2.LoadContent();
+                //Blight.LoadContent();
+                //Blight2.LoadContent();
+                //Rlight.LoadContent();
+                //Rlight2.LoadContent();
+
             }
-            if (gamestate == 1)
+            if (gamestate == 0)
             {
                 squareTexture = Content.Load<Texture2D>("menuscreen");
                 myfontyfont = Content.Load<SpriteFont>("File");
@@ -125,7 +142,7 @@ namespace Nea_2._0
             MouseState mouseState = Mouse.GetState();
             if (mouseState.LeftButton == ButtonState.Pressed && buttonRectangle.Contains(mouseState.Position))
             {
-                gamestate = 1.5;
+                gamestate = 1;
                 LoadContent();
             }
 
@@ -138,7 +155,7 @@ namespace Nea_2._0
             GraphicsDevice.Clear(Color.Black);//set background to black
             int col = 0;
             int row = 0;
-            if (gamestate == 1)// menu screen  // y = 550 x = 825 area = 453750 pixles 
+            if (gamestate == 0)// menu screen  // y = 550 x = 825 area = 453750 pixles 
             {
                 _spriteBatch.Begin();
                 _spriteBatch.Draw(squareTexture, new Vector2(row, col), Color.White);
@@ -150,7 +167,7 @@ namespace Nea_2._0
                 _spriteBatch.End();
             }
             
-            if (gamestate == 1.5)
+            if (gamestate == 1)
             {
                 Initialize();
                 _spriteBatch.Begin(transformMatrix: camera.GetViewMatrix());// begins draws  in the srpites + sets the zoom
@@ -178,7 +195,6 @@ namespace Nea_2._0
                     }
                     col += 55;
                 }
-                _spriteBatch.End();
                 // drawing the tanks probaly an esasier way 
                 Bheavy.Draw(_spriteBatch);
                 Rheavy.Draw(_spriteBatch);
@@ -190,6 +206,7 @@ namespace Nea_2._0
                 Rlight.Draw(_spriteBatch);
                 Blight2.Draw(_spriteBatch);
                 Rlight2.Draw(_spriteBatch);
+                _spriteBatch.End();
                 base.Draw(gameTime);
             }
         }

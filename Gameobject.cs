@@ -24,9 +24,9 @@ namespace Nea_2._0
         {
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch _spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, Color.White);
+            _spriteBatch.Draw(Texture, Location, Color.White);
         }
     }
 }
