@@ -8,8 +8,8 @@ namespace Nea_2._0
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _grpahics;
-
+        private GraphicsDeviceManager _graphics;
+        private GraphicsDevice graphicsDevice;
         private SpriteBatch _spriteBatch;
         const int tilesize = 55; // so i rember teh tile size
         //textures for terrain and ui 
@@ -61,7 +61,7 @@ namespace Nea_2._0
 
         public Game1()
         {
-            _grpahics= new GraphicsDeviceManager(this);
+            _graphics= new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             //_graphics.IsFullScreen = true;
@@ -103,7 +103,7 @@ namespace Nea_2._0
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(graphicsDevice);
             if (gamestate == 1)
             {
                 grassTexture = Content.Load<Texture2D>("grass");//loads grass 

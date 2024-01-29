@@ -4,12 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
-using System.Numerics;
-using System.Windows.Forms;
-using SharpDX.Direct2D1.Effects;
-using SharpDX.Direct3D9;
-using System.DirectoryServices.ActiveDirectory;
-using System.Drawing;
+using Microsoft.Xna.Framework;
 
 namespace Nea_2._0
 {
@@ -67,7 +62,7 @@ namespace Nea_2._0
             _movementactionpoints = movepoints;
             _havefired = havefired;
         }
-        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager Content)
+        public override void LoadContent(GraphicsDeviceManager GraphicsDevice)
         {
             if (Type == 1)
             {
@@ -143,7 +138,7 @@ namespace Nea_2._0
                     spriteBatch.Draw(Texture, new Vector2(_X, _Y), Microsoft.Xna.Framework.Color.White);
                 }
             }
-            if(Player == false)
+            if (Player == false)
             {
                 _X = 825;
                 if (Type == 2 && TankID == 1)
